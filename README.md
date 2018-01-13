@@ -1,9 +1,20 @@
 # QRGen
 
-使用`zxing`库生成二维码 Demo
+JavaFX **二维码生成、解码器** demo 
 
-**输出：**
+使用`zxing`库
 
-![](http://7xj74s.com1.z0.glb.clouddn.com/2018-01-12-15-43-54_r99.png)
 
-![](http://7xj74s.com1.z0.glb.clouddn.com/2018-01-12-15-44-48_r99.png)
+
+
+## Demo 
+
+![](http://7xj74s.com1.z0.glb.clouddn.com/2018-01-13-23-11-26_r32.png)
+
+![](http://7xj74s.com1.z0.glb.clouddn.com/2018-01-13-23-12-04_r68.png)
+
+![](http://7xj74s.com1.z0.glb.clouddn.com/2018-01-13-23-13-31_r76.png)
+
+## LICENSE
+
+MIT

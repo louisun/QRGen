@@ -1,31 +1,35 @@
+package pers.louisun.qrcode;
+
 import com.google.zxing.*;
 import com.google.zxing.client.j2se.BufferedImageLuminanceSource;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeWriter;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.Image;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 
 public class QRCode {
-    private static final String QR_CODE_IMAGE_PATH = "./QRCode.png";
 
-    private static void generateQRCodeImage(String text, int width, int height, String filePath)
-            throws WriterException, IOException {
+    public static Image generateQRCodeImage(String text, int width, int height)
+            throws WriterException {
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height);
 
-        Path path = FileSystems.getDefault().getPath(filePath);
-        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+//        Path path = FileSystems.getDefault().getPath(filePath);
+//        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+        BufferedImage img = MatrixToImageWriter.toBufferedImage(bitMatrix);
+        return SwingFXUtils.toFXImage(img, null);
     }
 
 
-    private static String decodeQRCodeImage(File imgFile) throws IOException {
+    public static String decodeQRCodeImage(File imgFile) throws IOException {
         BufferedImage bufferedImage = ImageIO.read(imgFile);
         LuminanceSource source = new BufferedImageLuminanceSource(bufferedImage);
         BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
@@ -40,7 +44,7 @@ public class QRCode {
 
     }
 
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
         System.setProperty("java.specification.version","1.9"); // ZXing只能识别1.X这种形式的java版本
         try {
             generateQRCodeImage("http://www.baidu.com", 350, 350, QR_CODE_IMAGE_PATH);
@@ -52,6 +56,6 @@ public class QRCode {
         } catch (IOException e) {
             System.out.println("Could not generate QR Code, IOException :: " + e.getMessage());
         }
-    }
+    }*/
 
 }
